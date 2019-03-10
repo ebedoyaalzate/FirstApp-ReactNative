@@ -1,36 +1,46 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import Inicio from './Inicio'
+import Body from './Body'
+import Final from './Final'
 
 class App extends React.Component {
+
+  constructor(){
+    super();
+    this.state={
+      numero:2,
+    }
+  }
+
+  aumentar =() =>{
+    this.setState({
+      numero: this.state.numero + 1
+    })
+  }
+  restar =() =>{
+    this.setState({
+      numero: this.state.numero - 1
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.cajaUno}/>
-        <View style={styles.cajaDos}/>
-        <View style={styles.cajaTres}/>
+        <Inicio name="Calculadora"/>
+        <Body numero={this.state.numero}/>
+        <Final sumar={this.aumentar}  restar={this.restar}/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container: { 
     flex: 1,
     backgroundColor: '#fff',
     //alignItems: 'center',//center,flex-start,flex-end/alinea horizontal
     //justifyContent: 'center',//alinea vertical
-  },
-  cajaUno:{
-    flex:1,
-    backgroundColor: '#00ff00',
-  },
-  cajaDos:{
-    flex:3,
-    backgroundColor: '#90EE90',
-  },
-  cajaTres:{
-    flex:1,
-    backgroundColor: '#006400',
   },
 });
 
